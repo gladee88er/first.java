@@ -1,70 +1,72 @@
 import java.util.Scanner;
+import java.lang.Math;
 
 public class MathFormulas {
-    public static double calculateCircleArea(double radius) {
+    // ... (existing formula methods)
+
+    public static double areaOfCircle(double radius) {
         return Math.PI * radius * radius;
     }
 
-    public static double calculateRectanglePerimeter(double length, double width) {
-        return 2 * (length + width);
+    // Method to calculate the area of a regular polygon
+    public static double areaOfPolygon(int n, double sideLength) {
+        double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
+        double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
+        return area;
     }
-
-    public static int calculateFactorial(int number) {
-        if (number == 0 || number == 1) {
-            return 1;
-        } else {
-            return number * calculateFactorial(number - 1);
-        }
-    }
-
-    public static int calculateSumOfNaturalNumbers(int n) {
-        return n * (n + 1) / 2;
-    }
-
-    public static int calculateFibonacci(int n) {
-        if (n <= 1) {
-            return n;
-        } else {
-            return calculateFibonacci(n - 1) + calculateFibonacci(n - 2);
-        }
-    }
-
-    // Other formula methods...
-
+    
+  
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Formula 1: Calculate Circle Area
-        System.out.print("Enter the radius of the circle: ");
-        double radius = scanner.nextDouble();
-        double circleArea = calculateCircleArea(radius);
-        System.out.println("Area of the circle with radius " + radius + ": " + circleArea);
+        System.out.println("Welcome to Marko's Math page.");
+        System.out.println("Please choose a calculation or trading algorithm for more help:");
+        System.out.println("1. Calculate the area of a circle");
+        System.out.println("2. Calculate the area of a regular polygon");
+        System.out.println("3. ");
+        System.out.println("4. ");
+        System.out.println("5. ");
+        // Add more options for additional calculations or algorithms
 
-        // Formula 2: Calculate Rectangle Perimeter
-        System.out.print("Enter the length of the rectangle: ");
-        double length = scanner.nextDouble();
-        System.out.print("Enter the width of the rectangle: ");
-        double width = scanner.nextDouble();
-        double rectanglePerimeter = calculateRectanglePerimeter(length, width);
-        System.out.println("Perimeter of the rectangle with length " + length + " and width " + width + ": " + rectanglePerimeter);
+        System.out.print("Enter the number corresponding to your choice: ");
+        int choice = scanner.nextInt();
 
-        // Formula 3: Calculate Factorial
-        System.out.print("Enter a number to calculate its factorial: ");
-        int number = scanner.nextInt();
-        int factorial = calculateFactorial(number);
-        System.out.println("Factorial of " + number + ": " + factorial);
+        switch (choice) {
+            case 1:
+                // Call the method to calculate circle area
+                System.out.print("Enter the radius of the circle: ");
+                double radius = scanner.nextDouble();
+                double circleArea = areaOfCircle(radius);
+                System.out.println("Area of the circle: " + circleArea);
+                break;
+            case 2:
+                // Call the method to calculate the area of a polygon
+                System.out.print("Enter the number of sides of the polygon (must be at least 3): ");
+                int n = scanner.nextInt();
+                if (n < 3) {
+                    System.out.println("Error: The number of sides must be at least 3.");
+                } else {
+                    System.out.print("Enter the length of one side of the polygon: ");
+                    double sideLength = scanner.nextDouble();
 
-        // Formula 4: Calculate Sum of Natural Numbers
-        System.out.print("Enter a positive integer to calculate the sum of natural numbers up to it: ");
-        int n = scanner.nextInt();
-        int sumOfNaturalNumbers = calculateSumOfNaturalNumbers(n);
-        System.out.println("Sum of natural numbers up to " + n + ": " + sumOfNaturalNumbers);
+                    double polygonArea = areaOfPolygon(n, sideLength);
+                    System.out.println("Area of the polygon: " + polygonArea);
+                }
+                break;
+            case 3:
+                // Call the method to calculate factorial
+                break;
+            case 4:
+                // Call the method to calculate sum of natural numbers
+                break;
+            case 5:
+                // Call the method to calculate Fibonacci number
+                break;
+            // Add more cases for additional calculations or algorithms
 
-        // Formula 5: Calculate Fibonacci Number
-        System.out.print("Enter an index to calculate the Fibonacci number at that index: ");
-        int fibonacciIndex = scanner.nextInt();
-        int fibonacciNumber = calculateFibonacci(fibonacciIndex);
-        System.out.println("Fibonacci number at index " + fibonacciIndex + ": " + fibonacciNumber);
+            default:
+                System.out.println("Invalid choice. Please enter a valid number.");
+        }
 
         scanner.close();
     }
