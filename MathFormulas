@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class MathFormulas {
+    public static double calculateCircleArea(double radius) {
+        return Math.PI * radius * radius;
+    }
+
+    public static double calculateRectanglePerimeter(double length, double width) {
+        return 2 * (length + width);
+    }
+
+    public static int calculateFactorial(int number) {
+        if (number == 0 || number == 1) {
+            return 1;
+        } else {
+            return number * calculateFactorial(number - 1);
+        }
+    }
+
+    public static int calculateSumOfNaturalNumbers(int n) {
+        return n * (n + 1) / 2;
+    }
+
+    public static int calculateFibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return calculateFibonacci(n - 1) + calculateFibonacci(n - 2);
+        }
+    }
+
+    // Other formula methods...
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Formula 1: Calculate Circle Area
+        System.out.print("Enter the radius of the circle: ");
+        double radius = scanner.nextDouble();
+        double circleArea = calculateCircleArea(radius);
+        System.out.println("Area of the circle with radius " + radius + ": " + circleArea);
+
+        // Formula 2: Calculate Rectangle Perimeter
+        System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+        System.out.print("Enter the width of the rectangle: ");
+        double width = scanner.nextDouble();
+        double rectanglePerimeter = calculateRectanglePerimeter(length, width);
+        System.out.println("Perimeter of the rectangle with length " + length + " and width " + width + ": " + rectanglePerimeter);
+
+        // Formula 3: Calculate Factorial
+        System.out.print("Enter a number to calculate its factorial: ");
+        int number = scanner.nextInt();
+        int factorial = calculateFactorial(number);
+        System.out.println("Factorial of " + number + ": " + factorial);
+
+        // Formula 4: Calculate Sum of Natural Numbers
+        System.out.print("Enter a positive integer to calculate the sum of natural numbers up to it: ");
+        int n = scanner.nextInt();
+        int sumOfNaturalNumbers = calculateSumOfNaturalNumbers(n);
+        System.out.println("Sum of natural numbers up to " + n + ": " + sumOfNaturalNumbers);
+
+        // Formula 5: Calculate Fibonacci Number
+        System.out.print("Enter an index to calculate the Fibonacci number at that index: ");
+        int fibonacciIndex = scanner.nextInt();
+        int fibonacciNumber = calculateFibonacci(fibonacciIndex);
+        System.out.println("Fibonacci number at index " + fibonacciIndex + ": " + fibonacciNumber);
+
+        scanner.close();
+    }
+}
