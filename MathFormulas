@@ -96,25 +96,39 @@ public class MathFormulas {
                 System.out.println("Volume of the cylinder: " + formattedCylinderVolume);
               break;
 
-            case 4:
+           case 4:
                 // Prompt for initial value
                 System.out.print("Enter the initial value: ");
                 double initialValue = scanner.nextDouble();
 
                 // Prompt for growth rate (as a decimal)
-                System.out.print("Enter the growth rate (as a decimal Ex. .08 for 8 percent): ");
-                double growthRate = scanner.nextDouble();
+                double growthRate = 0.0; // Initialize the growth rate to 0
+                while (true) {
+                System.out.print("Enter the growth rate (as a decimal Ex. 0.08 for 8 percent): ");
+                if (scanner.hasNextDouble()) {
+                growthRate = scanner.nextDouble();
+                if (growthRate >= 0 && growthRate < 1) {
+              break; // Valid growth rate provided, exit the loop
+                } else {
+                System.out.println("Error: Growth rate must be a decimal number between 0 and 1.");
+                }
+                } else {
+                String invalidInput = scanner.next(); // Consume the invalid input
+                System.out.println("Error: Invalid input. Please enter a decimal number.");
+            }
+        }
 
                 // Prompt for number of periods
                 System.out.print("Enter the number of periods: ");
                 int numberOfPeriods = scanner.nextInt();
 
-                // Call the method to calculate exponential growth rate
+                // Call the method to calculate exponential growth
                 double finalValue = exponentialGrowthRate(initialValue, growthRate, numberOfPeriods);
                 System.out.println("Final value after " + numberOfPeriods + " periods: " + finalValue);
-              break;
+                break;
 
-            default:
+
+              default:
                 System.out.println("Invalid choice. Please enter a valid number.");
         }
 
