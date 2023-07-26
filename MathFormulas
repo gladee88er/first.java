@@ -1,12 +1,9 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-import java.util.Scanner;
-import java.lang.Math;
-
 public class MathFormulas {
     // ... (existing formula methods)
-
+  
     // Method to calculate the area of a circle
     public static double areaOfCircle(double radius) {
         return Math.PI * radius * radius;
@@ -14,14 +11,14 @@ public class MathFormulas {
 
     // Method to calculate the area of a regular polygon
     public static double areaOfPolygon(int n, double sideLength) {
-        if (n < 3) {
-            System.out.println("Error: The number of sides must be at least 3.");
-            return 0; // Return 0 to indicate an invalid result.
-        }
-
-        double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
-        double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
-        return Math.abs(area); // Use Math.abs() to ensure a positive result.
+    if (n < 3) {
+        System.out.println("Error: The number of sides must be at least 3.");
+        return 0; // Return 0 to indicate an invalid result.
+    }
+      
+    double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
+    double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
+    return Math.abs(area); // Use Math.abs() to ensure a positive result.
     }
 
     // Method to calculate the volume of a cylinder
@@ -33,6 +30,9 @@ public class MathFormulas {
     public static double exponentialGrowthRate(double initialValue, double growthRate, int numberOfPeriods) {
         return initialValue * Math.pow(1 + growthRate, numberOfPeriods);
     }
+
+    // Any additional Methods you may want to add to the program will go here. Just make sure to keep adding corresponding switch statements.
+       
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -50,12 +50,11 @@ public class MathFormulas {
         int choice = scanner.nextInt();
 
         switch (choice) {
-            
             case 1:
                 // Call the method to calculate circle area
                 System.out.print("Enter the radius of the circle: ");
-                double radius = scanner.nextDouble();
-                double circleArea = areaOfCircle(radius);
+                double circleRadius = scanner.nextDouble();
+                double circleArea = areaOfCircle(circleRadius);
 
                 // Format the circleArea to display with two decimal places
                 String formattedCircleArea = String.format("%.2f", circleArea);
@@ -66,9 +65,9 @@ public class MathFormulas {
                 // Call the method to calculate the area of a polygon
                 System.out.print("Enter the number of sides of the polygon (must be at least 3): ");
                 int n = scanner.nextInt();
-              if (n < 3) {
+                if (n < 3) {
                 System.out.println("Error: The number of sides must be at least 3.");
-              } else {
+                } else {
                 System.out.print("Enter the length of one side of the polygon: ");
                 double sideLength = scanner.nextDouble();
 
@@ -77,8 +76,9 @@ public class MathFormulas {
                 System.out.println("sideLength = " + sideLength);
 
                 double polygonArea = areaOfPolygon(n, sideLength);
-                System.out.println("Area of the polygon: " + polygonArea);
-              }
+                String formattedArea = String.format("%.2f", polygonArea);
+                System.out.println("Area of the polygon: " + formattedArea);
+                }
               break;
 
             case 3:
@@ -89,32 +89,35 @@ public class MathFormulas {
                 System.out.print("Enter the height of the cylinder: ");
                 double height = scanner.nextDouble();
 
-                double volume = volumeOfCylinder(cylinderRadius, height);
-                System.out.println("Volume of the cylinder: " + volume);
-                break;
+                double cylinderVolume = volumeOfCylinder(cylinderRadius, height);
+
+                // Format the cylinderVolume to display with two decimal places
+                String formattedCylinderVolume = String.format("%.2f", cylinderVolume);
+                System.out.println("Volume of the cylinder: " + formattedCylinderVolume);
+              break;
 
             case 4:
-                // Call the method to calculate exponential growth rate
+                // Prompt for initial value
                 System.out.print("Enter the initial value: ");
                 double initialValue = scanner.nextDouble();
 
                 // Prompt for growth rate (as a decimal)
-                System.out.print("Enter the growth rate (as a decimal): ");
+                System.out.print("Enter the growth rate (as a decimal Ex. .08 for 8 percent): ");
                 double growthRate = scanner.nextDouble();
 
                 // Prompt for number of periods
                 System.out.print("Enter the number of periods: ");
                 int numberOfPeriods = scanner.nextInt();
 
-                // Call the method to calculate exponential growth
+                // Call the method to calculate exponential growth rate
                 double finalValue = exponentialGrowthRate(initialValue, growthRate, numberOfPeriods);
                 System.out.println("Final value after " + numberOfPeriods + " periods: " + finalValue);
               break;
-          
-              default:
+
+            default:
                 System.out.println("Invalid choice. Please enter a valid number.");
         }
 
-                scanner.close();
+        scanner.close();
     }
 }
