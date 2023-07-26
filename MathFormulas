@@ -1,9 +1,12 @@
 import java.util.Scanner;
 import java.lang.Math;
 
+import java.util.Scanner;
+import java.lang.Math;
+
 public class MathFormulas {
     // ... (existing formula methods)
-  
+
     // Method to calculate the area of a circle
     public static double areaOfCircle(double radius) {
         return Math.PI * radius * radius;
@@ -11,27 +14,26 @@ public class MathFormulas {
 
     // Method to calculate the area of a regular polygon
     public static double areaOfPolygon(int n, double sideLength) {
-    if (n < 3) {
-        System.out.println("Error: The number of sides must be at least 3.");
-        return 0; // Return 0 to indicate an invalid result.
-      
-    double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
-    double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
-    return Math.abs(area); // Use Math.abs() to ensure a positive result.
-  }
+        if (n < 3) {
+            System.out.println("Error: The number of sides must be at least 3.");
+            return 0; // Return 0 to indicate an invalid result.
+        }
+
+        double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
+        double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
+        return Math.abs(area); // Use Math.abs() to ensure a positive result.
+    }
 
     // Method to calculate the volume of a cylinder
     public static double volumeOfCylinder(double radius, double height) {
         return Math.PI * Math.pow(radius, 2) * height;
-  }
+    }
 
     // Method to calculate the exponential growth rate
     public static double exponentialGrowthRate(double initialValue, double growthRate, int numberOfPeriods) {
         return initialValue * Math.pow(1 + growthRate, numberOfPeriods);
     }
 
-    // Any additional Methods you may want to add to the program will go here. Just make sure to 
-      
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -41,13 +43,14 @@ public class MathFormulas {
         System.out.println("2. Calculate the area of a regular polygon");
         System.out.println("3. Calculate the volume of a cylinder ");
         System.out.println("4. Calculate the exponential growth rate");
-      
+
         // Add more options for additional calculations or algorithms
 
         System.out.print("Enter the number corresponding to your choice: ");
         int choice = scanner.nextInt();
 
         switch (choice) {
+            
             case 1:
                 // Call the method to calculate circle area
                 System.out.print("Enter the radius of the circle: ");
@@ -58,46 +61,45 @@ public class MathFormulas {
                 String formattedCircleArea = String.format("%.2f", circleArea);
                 System.out.println("Area of the circle: " + formattedCircleArea);
               break;
-            
+
             case 2:
                 // Call the method to calculate the area of a polygon
                 System.out.print("Enter the number of sides of the polygon (must be at least 3): ");
                 int n = scanner.nextInt();
-                if (n < 3) {
-                    System.out.println("Error: The number of sides must be at least 3.");
-                } else {
-                    System.out.print("Enter the length of one side of the polygon: ");
-                    double sideLength = scanner.nextDouble();
+              if (n < 3) {
+                System.out.println("Error: The number of sides must be at least 3.");
+              } else {
+                System.out.print("Enter the length of one side of the polygon: ");
+                double sideLength = scanner.nextDouble();
 
-                    // Display the values of n and sideLength before calling the method
-                    System.out.println("n = " + n);
-                    System.out.println("sideLength = " + sideLength);
+                // Display the values of n and sideLength before calling the method
+                System.out.println("n = " + n);
+                System.out.println("sideLength = " + sideLength);
 
-                    double polygonArea = areaOfPolygon(n, sideLength);
-                    String formattedArea = String.format("%.2f", polygonArea);
-                    System.out.println("Area of the polygon: " + formattedArea);
-                }
+                double polygonArea = areaOfPolygon(n, sideLength);
+                System.out.println("Area of the polygon: " + polygonArea);
+              }
               break;
 
             case 3:
                 // Call the method to calculate the volume of a cylinder.
                 System.out.print("Enter the radius of the cylinder: ");
-                double radius = scanner.nextDouble();
+                double cylinderRadius = scanner.nextDouble();
 
                 System.out.print("Enter the height of the cylinder: ");
                 double height = scanner.nextDouble();
 
-                double volume = volumeOfCylinder(radius, height);
+                double volume = volumeOfCylinder(cylinderRadius, height);
                 System.out.println("Volume of the cylinder: " + volume);
-              break;
-                    
+                break;
+
             case 4:
-                // Prompt for initial value
+                // Call the method to calculate exponential growth rate
                 System.out.print("Enter the initial value: ");
                 double initialValue = scanner.nextDouble();
 
                 // Prompt for growth rate (as a decimal)
-                System.out.print("Enter the growth rate (as a decimal Ex. .08 for 8 percent): ");
+                System.out.print("Enter the growth rate (as a decimal): ");
                 double growthRate = scanner.nextDouble();
 
                 // Prompt for number of periods
@@ -108,11 +110,11 @@ public class MathFormulas {
                 double finalValue = exponentialGrowthRate(initialValue, growthRate, numberOfPeriods);
                 System.out.println("Final value after " + numberOfPeriods + " periods: " + finalValue);
               break;
-
-            default:
+          
+              default:
                 System.out.println("Invalid choice. Please enter a valid number.");
         }
 
-        scanner.close();
+                scanner.close();
     }
 }
