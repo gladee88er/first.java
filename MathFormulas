@@ -3,7 +3,8 @@ import java.lang.Math;
 
 public class MathFormulas {
     // ... (existing formula methods)
-
+  
+    // Method to calculate the area of a circle
     public static double areaOfCircle(double radius) {
         return Math.PI * radius * radius;
     }
@@ -13,14 +14,24 @@ public class MathFormulas {
     if (n < 3) {
         System.out.println("Error: The number of sides must be at least 3.");
         return 0; // Return 0 to indicate an invalid result.
-    }
-
+      
     double interiorAngleRadians = Math.toRadians(180.0 * (n - 2) / n);
     double area = (n * Math.pow(sideLength, 2)) / (4 * Math.tan(interiorAngleRadians));
     return Math.abs(area); // Use Math.abs() to ensure a positive result.
-}
-    
-  
+  }
+
+    // Method to calculate the volume of a cylinder
+    public static double volumeOfCylinder(double radius, double height) {
+        return Math.PI * Math.pow(radius, 2) * height;
+  }
+
+    // Method to calculate the exponential growth rate
+    public static double exponentialGrowthRate(double initialValue, double growthRate, int numberOfPeriods) {
+        return initialValue * Math.pow(1 + growthRate, numberOfPeriods);
+    }
+
+    // Any additional Methods you may want to add to the program will go here. Just make sure to 
+      
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -28,9 +39,9 @@ public class MathFormulas {
         System.out.println("Please choose a calculation or trading algorithm for more help:");
         System.out.println("1. Calculate the area of a circle");
         System.out.println("2. Calculate the area of a regular polygon");
-        System.out.println("3. ");
-        System.out.println("4. ");
-        System.out.println("5. ");
+        System.out.println("3. Calculate the volume of a cylinder ");
+        System.out.println("4. Calculate the exponential growth rate");
+      
         // Add more options for additional calculations or algorithms
 
         System.out.print("Enter the number corresponding to your choice: ");
@@ -42,38 +53,61 @@ public class MathFormulas {
                 System.out.print("Enter the radius of the circle: ");
                 double radius = scanner.nextDouble();
                 double circleArea = areaOfCircle(radius);
-                System.out.println("Area of the circle: " + circleArea);
-                break;
+
+                // Format the circleArea to display with two decimal places
+                String formattedCircleArea = String.format("%.2f", circleArea);
+                System.out.println("Area of the circle: " + formattedCircleArea);
+              break;
+            
             case 2:
-            // Call the method to calculate the area of a polygon
-            System.out.print("Enter the number of sides of the polygon (must be at least 3): ");
-            int n = scanner.nextInt();
-            if (n < 3) {
-                System.out.println("Error: The number of sides must be at least 3.");
-            } else {
-                System.out.print("Enter the length of one side of the polygon: ");
-                double sideLength = scanner.nextDouble();
+                // Call the method to calculate the area of a polygon
+                System.out.print("Enter the number of sides of the polygon (must be at least 3): ");
+                int n = scanner.nextInt();
+                if (n < 3) {
+                    System.out.println("Error: The number of sides must be at least 3.");
+                } else {
+                    System.out.print("Enter the length of one side of the polygon: ");
+                    double sideLength = scanner.nextDouble();
 
-                // Display the values of n and sideLength before calling the method
-                System.out.println("n = " + n);
-                System.out.println("sideLength = " + sideLength);
+                    // Display the values of n and sideLength before calling the method
+                    System.out.println("n = " + n);
+                    System.out.println("sideLength = " + sideLength);
 
-                double polygonArea = areaOfPolygon(n, sideLength);
-                String formattedArea = String.format("%.2f", polygonArea);
-                System.out.println("Area of the polygon: " + formattedArea);
-            }
-            break;
+                    double polygonArea = areaOfPolygon(n, sideLength);
+                    String formattedArea = String.format("%.2f", polygonArea);
+                    System.out.println("Area of the polygon: " + formattedArea);
+                }
+              break;
 
             case 3:
-                // Call the method to calculate factorial
-                break;
+                // Call the method to calculate the volume of a cylinder.
+                System.out.print("Enter the radius of the cylinder: ");
+                double radius = scanner.nextDouble();
+
+                System.out.print("Enter the height of the cylinder: ");
+                double height = scanner.nextDouble();
+
+                double volume = volumeOfCylinder(radius, height);
+                System.out.println("Volume of the cylinder: " + volume);
+              break;
+                    
             case 4:
-                // Call the method to calculate sum of natural numbers
-                break;
-            case 5:
-                // Call the method to calculate Fibonacci number
-                break;
-            // Add more cases for additional calculations or algorithms
+                // Prompt for initial value
+                System.out.print("Enter the initial value: ");
+                double initialValue = scanner.nextDouble();
+
+                // Prompt for growth rate (as a decimal)
+                System.out.print("Enter the growth rate (as a decimal Ex. .08 for 8 percent): ");
+                double growthRate = scanner.nextDouble();
+
+                // Prompt for number of periods
+                System.out.print("Enter the number of periods: ");
+                int numberOfPeriods = scanner.nextInt();
+
+                // Call the method to calculate exponential growth
+                double finalValue = exponentialGrowthRate(initialValue, growthRate, numberOfPeriods);
+                System.out.println("Final value after " + numberOfPeriods + " periods: " + finalValue);
+              break;
 
             default:
                 System.out.println("Invalid choice. Please enter a valid number.");
